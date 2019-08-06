@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graphs"
+            app:startDestination="@id/enterSpace">
+
+    <fragment android:id="@+id/enterSpace" android:name="com.example.redditapiproject.fragments.EnterSpace"
+              android:label="fragment_enter_face" tools:layout="@layout/fragment_enter_face">
+        <action android:id="@+id/action_enterSpace_to_options" app:destination="@id/options"/>
+    </fragment>
+    <fragment android:id="@+id/options" android:name="com.example.redditapiproject.fragments.Options"
+              android:label="fragment_options" tools:layout="@layout/fragment_options">
+        <action android:id="@+id/action_options_to_outcome" app:destination="@id/outcome"/>
+    </fragment>
+    <fragment android:id="@+id/outcome" android:name="com.example.redditapiproject.fragments.Outcome"
+              android:label="fragment_outcome" tools:layout="@layout/fragment_outcome"/>
+    <action android:id="@+id/action_global_enterSpace" app:destination="@id/enterSpace" app:popUpTo="@+id/enterSpace"/>
+</navigation>
