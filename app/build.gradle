@@ -41,4 +41,16 @@ dependencies {
 
     implementation 'androidx.fragment:fragment:1.1.0-rc03'
     implementation 'androidx.fragment:fragment-ktx:1.1.0-rc03'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    // gson convertor
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
