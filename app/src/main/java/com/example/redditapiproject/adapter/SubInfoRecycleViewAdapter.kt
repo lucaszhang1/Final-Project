@@ -28,7 +28,8 @@ class NoteViewHolder(itemView: View, private val onClick: (Int) -> Unit): Recycl
     set(value){
         field = value
         itemView.findViewById<TextView>(R.id.textViewVHTitle).text = note?.name
-        itemView.findViewById<TextView>(R.id.textViewVHPreview).text = note?.hits.toString()
+        itemView.findViewById<TextView>(R.id.textViewVHPreview).text = "hits: " + note?.hits.toString()
+        itemView.findViewById<TextView>(R.id.textViewVHPreview2).text = "user counts: " + note?.userCount.toString()
     }
 
     init {
