@@ -1,6 +1,5 @@
 package com.example.ctdrecviewtutorial.adapter
 
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redditapiproject.R
+import com.example.redditapiproject.models.SubInfo
 
-class SubInfoRecycleViewAdapter(private val onClick:(Int) -> Unit): ListAdapter<SubInfoRecycleViewAdapter, NoteViewHolder>(NoteDiffCallback()) {
+class SubInfoRecycleViewAdapter(private val onClick:(Int) -> Unit): ListAdapter<SubInfo, NoteViewHolder>(NoteDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_note, parent, false)
@@ -24,12 +24,11 @@ class SubInfoRecycleViewAdapter(private val onClick:(Int) -> Unit): ListAdapter<
 }
 
 class NoteViewHolder(itemView: View, private val onClick: (Int) -> Unit): RecyclerView.ViewHolder(itemView){
-    var note: SubInfoRecycleViewAdapter? = null
+    var note: SubInfo? = null
     set(value){
         field = value
-        itemView.findViewById<TextView>(R.id.textViewVHTitle).text = note?.title
-        itemView.findViewById<TextView>(R.id.textViewVHPreview).text = note?.content
-        itemView.findViewById<TextView>(R.id.textViewVHDate).text = note?.timeStamp.toString()
+        itemView.findViewById<TextView>(R.id.textViewVHTitle).text = note?.name
+        itemView.findViewById<TextView>(R.id.textViewVHPreview).text = note?.hits.toString()
     }
 
     init {
@@ -37,12 +36,12 @@ class NoteViewHolder(itemView: View, private val onClick: (Int) -> Unit): Recycl
     }
 }
 
-class NoteDiffCallback : DiffUtil.ItemCallback<Note>(){
-    override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
+class NoteDiffCallback : DiffUtil.ItemCallback<SubInfo>(){
+    override fun areItemsTheSame(oldItem: SubInfo, newItem: SubInfo): Boolean {
         return oldItem === newItem
     }
 
-    override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
+    override fun areContentsTheSame(oldItem: SubInfo, newItem: SubInfo): Boolean {
         return oldItem == newItem
     }
 
