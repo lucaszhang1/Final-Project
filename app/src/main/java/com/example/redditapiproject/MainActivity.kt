@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.redditapiproject.models.SubmissionListing
-import com.example.redditapiproject.network.ApiUserRestClient
+import com.example.redditapiproject.network.APICommunitySubmissionRestClient
 import com.example.redditapiproject.network.RetrofitEventListener
 import retrofit2.Call
 
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getSubmissions() {
-        ApiUserRestClient.instance.getSubmissionList(object : RetrofitEventListener {
+        APICommunitySubmissionRestClient.instance.getSubmissionList(object : RetrofitEventListener {
             override fun onSuccess(call: Call<*>?, response: Any) {
                 if (response is SubmissionListing) {
                     Log.d("NETWORK", "Got a sub:")

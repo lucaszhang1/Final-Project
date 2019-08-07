@@ -8,10 +8,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class ApiUserRestClient {
+class APICommunitySubmissionRestClient {
 
     companion object {
-        val instance = ApiUserRestClient()
+        val instance = APICommunitySubmissionRestClient()
     }
 
     private var apiCommunitySubmission: APICommunitySubmission? = null
