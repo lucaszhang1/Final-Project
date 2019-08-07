@@ -10,6 +10,9 @@ import com.example.redditapiproject.network.RetrofitEventListener
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import retrofit2.Call
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 
 private fun <K, V> MutableMap<K, V>.modifyOrDefault(key: K, default: V, mod: (V) -> V) {
     val cur = this[key]
@@ -21,7 +24,10 @@ private fun <K, V> MutableMap<K, V>.modifyOrDefault(key: K, default: V, mod: (V)
 
 data class SubInfoDebug(val name: String, val hits: Int, val userCount: Int )
 
+
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +38,13 @@ class MainActivity : AppCompatActivity() {
                 Log.d("SUB HITS", "$sub: \t\t\t$hits - $count")
             }
         }
+
+        navController = findNavController(R.id.navHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onNavigateUp()
     }
 
     private fun getTopSubHits(): Channel<SubInfoDebug> {
@@ -97,5 +110,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
         return chan
+        
     }
 }
