@@ -29,7 +29,7 @@ class APICommunitySubmissionRestClient {
             "count" to "25"
         )
 
-        val apiSubmissionCall = apiCommunitySubmission!!.getSubmissionList("aww", data)
+        val apiSubmissionCall = apiCommunitySubmission!!.getSubmissionList("COMPLETEANARCHY", data)
         /*
         This is the line which actually sends a network request. Calling enqueue() executes a call asynchronously. It has two callback listeners which will invoked on the main thread
         */

@@ -23,9 +23,7 @@ class APIUserSubmissionRestClient {
         val retrofit = NetworkClient.retrofitClient
         apiUserSubmission = retrofit.create<APIUserSubmission>(APIUserSubmission::class.java)
 
-        val data = hashMapOf<String, String>(
-            "count" to "25"
-        )
+        val data = hashMapOf<String, String>()
 
         val apiSubmissionCall = apiUserSubmission!!.getSubmissionList(username, data)
         /*
