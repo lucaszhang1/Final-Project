@@ -57,31 +57,31 @@ class Outcome : Fragment() {
 
         //adapter.submitList(listOf())
 
-        displayTestData(adapter)
+        val subName = arguments?.get(getString(R.string.subreddit_name))!! as String
+
+        displayTestData(adapter, subName)
 
     }
 
-    private fun displayTestData(adapter: SubInfoRecycleViewAdapter) {
+    private fun displayTestData(adapter: SubInfoRecycleViewAdapter, subName: String) {
         val x = GlobalScope.launch {
             Log.d("RUNBLOCK", "running blocking in dislpayTestData")
             val data = mutableListOf<SubInfo>()
-                val channel = getTopSubHits()
+                val channel = getTopSubHits(subName)
                 for (s in channel) {
                     val (sub, hits, count) = s
                     Log.d("SUB", "Sub found: $sub, $hits, $count")
                     data.add(s)
                 }
             activity?.runOnUiThread {
-                adapter.submitList(data)
+                adapter.submitList( data.filter {it.userCount > 1} .sortedBy { it.hits }.reversed() )
             }
         }
-
-
     }
 
-    private fun getTopSubHits(): Channel<SubInfo> {
+    private fun getTopSubHits(subName: String): Channel<SubInfo> {
         val chan = Channel<SubInfo>()
-        APICommunitySubmissionRestClient.instance.getSubmissionList(object : RetrofitEventListener {
+        APICommunitySubmissionRestClient.instance.getSubmissionList(subName, object : RetrofitEventListener {
             override fun onSuccess(call: Call<*>?, response: Any) {
                 val users = mutableSetOf<String>()
 

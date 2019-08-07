@@ -21,7 +21,7 @@ class APICommunitySubmissionRestClient {
      * @param retrofitEventListener of RetrofitEventListener.
      */
 
-    fun getSubmissionList(retrofitEventListener: RetrofitEventListener) {
+    fun getSubmissionList(subName: String, retrofitEventListener: RetrofitEventListener) {
         val retrofit = NetworkClient.retrofitClient
         apiCommunitySubmission = retrofit.create<APICommunitySubmission>(APICommunitySubmission::class.java)
 
@@ -29,7 +29,7 @@ class APICommunitySubmissionRestClient {
             "count" to "25"
         )
 
-        val apiSubmissionCall = apiCommunitySubmission!!.getSubmissionList("COMPLETEANARCHY", data)
+        val apiSubmissionCall = apiCommunitySubmission!!.getSubmissionList(subName, data)
         /*
         This is the line which actually sends a network request. Calling enqueue() executes a call asynchronously. It has two callback listeners which will invoked on the main thread
         */

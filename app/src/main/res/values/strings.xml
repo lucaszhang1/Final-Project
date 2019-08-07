@@ -2,6 +2,7 @@
     <string name="app_name">Reddit API project</string>
     <string name="position_key">position key</string>
     <string name="hello_blank_fragment">blank fragment</string>
+    <string name="subreddit_name">SUBREDDIT_NAME</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
