@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Reddit API project</string>
+    <string name="position_key">position key</string>
+    <string name="hello_blank_fragment">blank fragment</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
