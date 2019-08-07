@@ -9,7 +9,7 @@ import retrofit2.http.QueryMap
 /**
  * API for getting weather from https://darksky.net/
  */
-interface APISubmission {
+interface APICommunitySubmission {
     @GET("r/{subredditName}.json")
     fun getSubmissionList(
         @Path("subredditName") subredditName: String,
