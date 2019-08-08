@@ -11,7 +11,7 @@
     <fragment android:id="@+id/outcome" android:name="com.example.redditapiproject.fragments.Outcome"
 
               android:label="fragment_outcome" tools:layout="@layout/fragment_outcome">
-        <action android:id="@+id/action_outcome_to_options" app:destination="@id/options"/>
+        <action android:id="@+id/action_outcome_to_details" app:destination="@id/details"/>
         <argument android:name="@string/subreddit_name" app:argType="string" android:defaultValue="all"/>
 
     </fragment>
