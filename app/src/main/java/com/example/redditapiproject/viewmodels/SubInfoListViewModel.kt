@@ -10,8 +10,16 @@ class SubInfoListViewModel() : ViewModel() {
     private val _submissionList = MutableLiveData<MutableList<SubInfo>>()
     private val _subUserTable = MutableLiveData<MutableMap<String, MutableSet<String>>>()
 
+    private val _norefresh = MutableLiveData<Boolean>().apply { value = false }
+
     val submissionList: LiveData<MutableList<SubInfo>> = _submissionList
     val subUserTable: LiveData<MutableMap<String, MutableSet<String>>> = _subUserTable
+
+    val norefresh: LiveData<Boolean> = _norefresh
+
+    fun setNoRefresh(nr: Boolean){
+        _norefresh.postValue(nr)
+    }
 
     fun setSubList(list: List<SubInfo>) {
         _submissionList.postValue(list.toMutableList())

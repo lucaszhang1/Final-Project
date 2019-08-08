@@ -27,7 +27,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="32dp"
                         android:layout_marginEnd="8dp"
                         android:ellipsize="end"
                         android:maxLines="1"
@@ -35,7 +34,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewVHTitle"
                         tools:text="This will be a a preview of the content of the note"
-                        app:layout_constraintHorizontal_bias="0.0"/>
+                        app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="32dp"/>
                 <TextView
                         android:id="@+id/textViewVHTitle"
                         style="@style/TextAppearance.AppCompat.Headline"
@@ -62,7 +61,23 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewVHTitle"
-                        tools:text="This will be a a preview of the content of the note"/>
+                        tools:text="This will be a a preview of the content of the note"
+                        app:layout_constraintHorizontal_bias="0.0"/>
+                <TextView
+                        android:id="@+id/textViewVHPreview3"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginEnd="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewVHTitle"
+                        tools:text="This will be a a preview of the content of the note"
+                        app:layout_constraintHorizontal_bias="0.0"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

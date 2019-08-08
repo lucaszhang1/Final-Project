@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ctdrecviewtutorial.adapter.SubInfoRecycleViewAdapter
 import com.example.redditapiproject.R
@@ -41,8 +43,9 @@ class Outcome : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = SubInfoRecycleViewAdapter {
-
+        val adapter = SubInfoRecycleViewAdapter { position ->
+            val bundle = bundleOf(getString(R.string.position_key) to position)
+            findNavController().navigate(R.id.action_outcome_to_details, bundle)
         }
 
         val myLayoutManager = LinearLayoutManager(requireContext())
@@ -60,7 +63,10 @@ class Outcome : Fragment() {
 
         val subName = arguments?.get(getString(R.string.subreddit_name))!! as String
 
-        displayTestData(adapter, subName)
+        if(viewModel.norefresh.value == false)
+            displayTestData(adapter, subName)
+
+
 
     }
 
