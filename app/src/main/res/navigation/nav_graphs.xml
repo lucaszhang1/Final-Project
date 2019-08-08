@@ -8,9 +8,12 @@
               android:label="Enter Face" tools:layout="@layout/fragment_enter_face">
         <action android:id="@+id/action_enterSpace_to_outcome" app:destination="@id/outcome"/>
     </fragment>
-    <fragment android:id="@+id/outcome" android:name="com.example.redditapiproject.fragments.Outcome"
-              android:label="Outcome" tools:layout="@layout/fragment_outcome">
+    <fragment android:id="@+id/outcome" android:name="com.example.redditapiproject.fragments.Outcome">
+
+              android:label="fragment_outcome" tools:layout="@layout/fragment_outcome">
         <action android:id="@+id/action_outcome_to_details" app:destination="@id/details"/>
+        <argument android:name="@string/subreddit_name" app:argType="string" android:defaultValue="all"/>
+
     </fragment>
     <action android:id="@+id/action_global_enterSpace" app:destination="@id/enterSpace" app:popUpTo="@+id/enterSpace"/>
     <fragment android:id="@+id/details" android:name="com.example.redditapiproject.fragments.Details"
