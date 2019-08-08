@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ctdrecviewtutorial.adapter.SubInfoRecycleViewAdapter
 import com.example.redditapiproject.R
@@ -15,6 +17,7 @@ import com.example.redditapiproject.models.SubmissionListing
 import com.example.redditapiproject.network.APICommunitySubmissionRestClient
 import com.example.redditapiproject.network.APIUserSubmissionRestClient
 import com.example.redditapiproject.network.RetrofitEventListener
+import com.example.redditapiproject.viewmodels.SubInfoListViewModel
 import kotlinx.android.synthetic.main.fragment_outcome.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
@@ -26,6 +29,8 @@ import retrofit2.Call
  *
  */
 class Outcome : Fragment() {
+
+    private val viewModel: SubInfoListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +52,11 @@ class Outcome : Fragment() {
             this.adapter = adapter
         }
 
-
-        //adapter.submitList(listOf())
+        viewModel.submissionList.observe(this, Observer {
+            it?.let { subList ->
+                adapter.submitList(subList)
+            }
+        })
 
         val subName = arguments?.get(getString(R.string.subreddit_name))!! as String
 
@@ -60,14 +68,11 @@ class Outcome : Fragment() {
         val x = GlobalScope.launch {
             Log.d("RUNBLOCK", "running blocking in dislpayTestData")
             val data = mutableListOf<SubInfo>()
-                val channel = getTopSubHits(subName)
-                for (s in channel) {
-                    val (sub, hits, count) = s
-                    Log.d("SUB", "Sub found: $sub, $hits, $count")
-                    data.add(s)
-                }
-            activity?.runOnUiThread {
-                adapter.submitList( data.filter {it.userCount > 1} .sortedBy { it.hits }.reversed() )
+            val channel = getTopSubHits(subName)
+            for (s in channel) {
+                val (sub, hits, count) = s
+                Log.d("SUB", "Sub found: $sub, $hits, $count")
+                viewModel.addSubmission(s)
             }
         }
     }
@@ -139,9 +144,11 @@ class Outcome : Fragment() {
         return chan
 
     }
+
+    private fun <K, V> MutableMap<K, V>.modifyOrDefault(key: K, default: V, mod: (V) -> V) {
+        val cur = this[key]
+        this[key] = cur?.let { mod(it) } ?: default
+    }
+
 }
 
-private fun <K, V> MutableMap<K, V>.modifyOrDefault(key: K, default: V, mod: (V) -> V) {
-    val cur = this[key]
-    this[key] = cur?.let { mod(it) } ?: default
-}
