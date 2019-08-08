@@ -150,8 +150,5 @@ class Outcome : Fragment() {
 
 private fun <K, V> MutableMap<K, V>.modifyOrDefault(key: K, default: V, mod: (V) -> V) {
     val cur = this[key]
-    this[key] = when (cur) {
-        null -> default
-        else -> mod(cur)
-    }
+    this[key] = cur?.let { mod(it) } ?: default
 }
