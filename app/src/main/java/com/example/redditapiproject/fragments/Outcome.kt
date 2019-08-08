@@ -86,7 +86,6 @@ class Outcome : Fragment() {
                 val users = mutableSetOf<String>()
 
                 if (response is SubmissionListing) {
-                    Log.d("NETWORK", "Got a subreddit:")
                     for (x in response.data?.children!!) {
                         users.add(x.data?.author!!)
                     }
