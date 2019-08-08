@@ -43,6 +43,8 @@ class Outcome : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val subName = arguments?.get(getString(R.string.subreddit_name))!! as String
+
         val adapter = SubInfoRecycleViewAdapter { position ->
             val bundle = bundleOf(getString(R.string.position_key) to position)
             findNavController().navigate(R.id.action_outcome_to_details, bundle)
@@ -61,12 +63,8 @@ class Outcome : Fragment() {
             }
         })
 
-        val subName = arguments?.get(getString(R.string.subreddit_name))!! as String
-
         if(viewModel.norefresh.value == false)
             displayTestData(adapter, subName)
-
-
 
     }
 
@@ -105,6 +103,7 @@ class Outcome : Fragment() {
                                 hitMap.modifyOrDefault(subreddit, Pair(hits, 1)) {
                                     Pair(it.first + hits, it.second + 1)
                                 }
+                                viewModel.addUserToSub(user, subreddit)
                             }
                         }
 

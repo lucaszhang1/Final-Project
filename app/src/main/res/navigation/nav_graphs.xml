@@ -17,5 +17,7 @@
     </fragment>
     <action android:id="@+id/action_global_enterSpace" app:destination="@id/enterSpace" app:popUpTo="@+id/enterSpace"/>
     <fragment android:id="@+id/details" android:name="com.example.redditapiproject.fragments.Details"
-              android:label="Details" tools:layout="@layout/fragment_detail"/>
+              android:label="Details" tools:layout="@layout/fragment_detail">
+        <argument android:name="@string/position_key" app:argType="integer"/>
+    </fragment>
 </navigation>
