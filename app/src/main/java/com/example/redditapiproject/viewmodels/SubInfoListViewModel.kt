@@ -18,8 +18,8 @@ class SubInfoListViewModel() : ViewModel() {
     }
 
     fun clearSubList() {
-        _submissionList.postValue(null)
-        _subUserTable.postValue(null)
+        _submissionList.postValue(mutableListOf())
+        _subUserTable.postValue(mutableMapOf())
     }
 
     fun addUserToSub(user: String, sub: String) {
