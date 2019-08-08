@@ -88,6 +88,7 @@ class Outcome : Fragment() {
                 if (response is SubmissionListing) {
                     for (x in response.data?.children!!) {
                         users.add(x.data?.author!!)
+                        Log.d("USERS", "Added user")
                     }
 
                     GlobalScope.launch {
@@ -121,16 +122,18 @@ class Outcome : Fragment() {
         val chan = Channel<Pair<String, Int>>()
 
         APIUserSubmissionRestClient.instance.getSubmissionList(user, object : RetrofitEventListener {
-            override fun onSuccess(call: Call<*>?, response: Any) {
+            override fun onSuccess(call: Call<*>?, response: Any?) {
                 val hitMap = mutableMapOf<String, Int>()
 
                 if (response is SubmissionListing) {
-                    Log.d("NETWORK", "Got a user:")
+                    Log.d("NETWORK", "Got a user: $user")
                     for (x in response.data?.children!!) {
                         hitMap.modifyOrDefault(x.data?.subreddit!!, 1) {
                             it + 1
                         }
                     }
+                } else {
+                    chan.close()
                 }
                 GlobalScope.launch {
                     for (kvp in hitMap) chan.send(kvp.toPair())
