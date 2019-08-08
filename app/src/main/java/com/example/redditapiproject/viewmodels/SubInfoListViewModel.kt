@@ -11,10 +11,12 @@ class SubInfoListViewModel() : ViewModel() {
 
     val submissionList: LiveData<MutableList<SubInfo>> = _submissionList
 
-    fun addSubmission(sub: SubInfo) {
-        val list = _submissionList.value
-        list?.add(sub)
-        _submissionList.postValue(list ?: mutableListOf(sub))
+    fun setSubList(list: List<SubInfo>) {
+        _submissionList.postValue(list.toMutableList())
+    }
+
+    fun clearSubList() {
+        _submissionList.postValue(mutableListOf())
     }
 
 

@@ -68,12 +68,14 @@ class Outcome : Fragment() {
         val x = GlobalScope.launch {
             Log.d("RUNBLOCK", "running blocking in dislpayTestData")
             val data = mutableListOf<SubInfo>()
+            viewModel.clearSubList()
             val channel = getTopSubHits(subName)
             for (s in channel) {
                 val (sub, hits, count) = s
                 Log.d("SUB", "Sub found: $sub, $hits, $count")
-                viewModel.addSubmission(s)
+                data.add(s)
             }
+            viewModel.setSubList(data.filter {it.userCount > 1}.sortedByDescending { it.hits })
         }
     }
 
