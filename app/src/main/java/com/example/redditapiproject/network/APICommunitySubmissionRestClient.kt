@@ -42,8 +42,10 @@ class APICommunitySubmissionRestClient {
             override fun onResponse(call: Call<SubmissionListing>?, response: Response<SubmissionListing>?) {
                 /*This is the success callback. Though the response type is JSON, with Retrofit we get the response in the form of WResponse POJO class
                  */
-                response?.let {
-                    retrofitEventListener.onSuccess(call, it.body())
+                if (response?.body() != null){
+                    retrofitEventListener.onSuccess(call, response.body())
+                } else {
+
                 }
             }
             override fun onFailure(call: Call<SubmissionListing>?, t: Throwable?) {
