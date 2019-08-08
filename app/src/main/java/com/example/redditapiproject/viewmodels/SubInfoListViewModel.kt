@@ -8,10 +8,12 @@ import com.example.redditapiproject.models.SubmissionListing
 
 class SubInfoListViewModel() : ViewModel() {
     private val _submissionList = MutableLiveData<MutableList<SubInfo>>()
+    private val _subUserTable = MutableLiveData<MutableMap<String, MutableSet<String>>>()
 
     private val _norefresh = MutableLiveData<Boolean>().apply { value = false }
 
     val submissionList: LiveData<MutableList<SubInfo>> = _submissionList
+    val subUserTable: LiveData<MutableMap<String, MutableSet<String>>> = _subUserTable
 
     val norefresh: LiveData<Boolean> = _norefresh
 
@@ -25,7 +27,18 @@ class SubInfoListViewModel() : ViewModel() {
 
     fun clearSubList() {
         _submissionList.postValue(mutableListOf())
+        _subUserTable.postValue(mutableMapOf())
     }
 
+    fun addUserToSub(user: String, sub: String) {
+        val table = _subUserTable.value ?: mutableMapOf()
+        val cur = table[sub];
+        if (cur != null) {
+            cur.add(user)
+        } else {
+            table[sub] = mutableSetOf(user)
+        }
+        _subUserTable.postValue(table)
 
+    }
 }

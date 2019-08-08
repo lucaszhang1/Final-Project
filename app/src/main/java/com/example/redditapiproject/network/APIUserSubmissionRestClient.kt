@@ -37,11 +37,16 @@ class APIUserSubmissionRestClient {
             override fun onResponse(call: Call<SubmissionListing>?, response: Response<SubmissionListing>?) {
                 /*This is the success callback. Though the response type is JSON, with Retrofit we get the response in the form of WResponse POJO class
                  */
-                if (response?.body() != null){
-                    retrofitEventListener.onSuccess(call, response.body())
-                } else {
 
+                Log.d("USER", "USER $username ONRESPONSE CALLED")
+
+                if (response?.body() != null){
+                    Log.d("USER", "USER $username's body not null, calling onsuccess")
+
+                } else {
+                    Log.d("USER","User $username body is null")
                 }
+                retrofitEventListener.onSuccess(call, response?.body())
             }
             override fun onFailure(call: Call<SubmissionListing>?, t: Throwable?) {
                 /*
