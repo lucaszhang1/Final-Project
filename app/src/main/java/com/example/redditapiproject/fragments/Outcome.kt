@@ -2,15 +2,11 @@ package com.example.redditapiproject.fragments
 
 
 import android.os.Bundle
-import android.telephony.SubscriptionInfo
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import androidx.core.os.bundleOf
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ctdrecviewtutorial.adapter.SubInfoRecycleViewAdapter
 import com.example.redditapiproject.R
@@ -21,12 +17,9 @@ import com.example.redditapiproject.network.APIUserSubmissionRestClient
 import com.example.redditapiproject.network.RetrofitEventListener
 import kotlinx.android.synthetic.main.fragment_outcome.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import retrofit2.Call
-import com.example.redditapiproject.MainActivity as MainActivity1
 
 /**
  * A simple [Fragment] subclass.
