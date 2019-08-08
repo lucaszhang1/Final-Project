@@ -41,8 +41,9 @@ class Outcome : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = SubInfoRecycleViewAdapter {
-
+        val adapter = SubInfoRecycleViewAdapter { position ->
+            val bundle = bundleOf(getString(R.string.position_key) to position)
+            findNavController().navigate(R.id.action_outcome_to_details, bundle)
         }
 
         val myLayoutManager = LinearLayoutManager(requireContext())

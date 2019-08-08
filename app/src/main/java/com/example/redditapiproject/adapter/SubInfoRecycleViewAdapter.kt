@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redditapiproject.R
 import com.example.redditapiproject.models.SubInfo
+import org.w3c.dom.Text
 
 class SubInfoRecycleViewAdapter(private val onClick:(Int) -> Unit): ListAdapter<SubInfo, NoteViewHolder>(NoteDiffCallback()) {
 
@@ -30,6 +31,7 @@ class NoteViewHolder(itemView: View, private val onClick: (Int) -> Unit): Recycl
         itemView.findViewById<TextView>(R.id.textViewVHTitle).text = note?.name
         itemView.findViewById<TextView>(R.id.textViewVHPreview).text = "hits: " + note?.hits.toString()
         itemView.findViewById<TextView>(R.id.textViewVHPreview2).text = "user counts: " + note?.userCount.toString()
+        itemView.findViewById<TextView>(R.id.textViewVHPreview3).text = "click on to show users who like this also like"
     }
 
     init {
