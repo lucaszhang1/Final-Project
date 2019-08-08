@@ -11,9 +11,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 
 import com.example.redditapiproject.R
+import com.example.redditapiproject.viewmodels.SubInfoListViewModel
 import kotlinx.android.synthetic.main.fragment_enter_face.*
 
 /**
@@ -21,6 +23,8 @@ import kotlinx.android.synthetic.main.fragment_enter_face.*
  *
  */
 class EnterSpace : Fragment() {
+
+    private val viewModel: SubInfoListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +43,8 @@ class EnterSpace : Fragment() {
 
             val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE)!! as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
+
+            viewModel.setNoRefresh(false)
 
             findNavController().navigate(R.id.action_enterSpace_to_outcome, bundleOf(
                 getString(R.string.subreddit_name) to editText.text.toString()
