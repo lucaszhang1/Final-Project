@@ -81,7 +81,7 @@ class Outcome : Fragment() {
 
     private fun getTopSubHits(subName: String): Channel<SubInfo> {
         val chan = Channel<SubInfo>()
-        APICommunitySubmissionRestClient.instance.getSubmissionList(subName, object : RetrofitEventListener {
+        APICommunitySubmissionRestClient.instance.getSubmissionList(subName, 45, object : RetrofitEventListener {
             override fun onSuccess(call: Call<*>?, response: Any) {
                 val users = mutableSetOf<String>()
 

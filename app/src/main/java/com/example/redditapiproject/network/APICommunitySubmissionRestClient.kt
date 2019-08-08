@@ -1,6 +1,7 @@
 package com.example.redditapiproject.network
 
 import android.util.Log
+import android.widget.Toast
 import com.example.redditapiproject.models.SubmissionListing
 
 import retrofit2.Call
@@ -21,12 +22,12 @@ class APICommunitySubmissionRestClient {
      * @param retrofitEventListener of RetrofitEventListener.
      */
 
-    fun getSubmissionList(subName: String, retrofitEventListener: RetrofitEventListener) {
+    fun getSubmissionList(subName: String, limit: Int, retrofitEventListener: RetrofitEventListener) {
         val retrofit = NetworkClient.retrofitClient
         apiCommunitySubmission = retrofit.create<APICommunitySubmission>(APICommunitySubmission::class.java)
 
         val data = hashMapOf<String, String>(
-            "count" to "25"
+            "limit" to limit.toString()
         )
 
         val apiSubmissionCall = apiCommunitySubmission!!.getSubmissionList(subName, data)
